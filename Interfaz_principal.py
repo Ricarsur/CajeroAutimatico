@@ -5,6 +5,7 @@ from retirar10k import Pantalla10k
 from retirar20k import Pantalla20k
 from retirar50k import Pantalla50k
 from retirar100k import Pantalla100k
+from otroValor import pantalla_otro
 
 class Inicio(QWidget):
     def __init__(self):
@@ -80,20 +81,33 @@ class Inicio(QWidget):
         layout_horizontal3.setAlignment(Qt.AlignCenter)  # Centrar los botones
         
         layout_principal.addLayout(layout_horizontal3)
-        layout_principal.addSpacing(-110)
+        layout_principal.addSpacing(-45)
 
         
         
-        # Boton5 en su propio QHBoxLayout
-        layout_horizontal2 = QHBoxLayout()
+        # Boton5 y boton6 en su propio QHBoxLayout
         
-        btn_balance = QPushButton('Balance', self)
+        layout_horizontal3 = QHBoxLayout()
+        btn_otro = QPushButton('<--- Otro valor', self)
+        btn_otro.setStyleSheet("color: #FFFFFF; background-color: #00093F")
+        btn_otro.setFixedSize(100, 34)
+        btn_otro.clicked.connect(self.retirarOtroValor)    
+
+        btn_balance =QPushButton('Balance --->')
         btn_balance.setStyleSheet("color: #FFFFFF; background-color: #00093F")
         btn_balance.setFixedSize(100, 34)
-        layout_horizontal2.addWidget(btn_balance)
-        layout_horizontal2.setAlignment(Qt.AlignCenter)  
-        layout_principal.addSpacing(20)
-        layout_principal.addLayout(layout_horizontal2)
+        btn_balance.clicked.connect(self.Retirar100kSeleccionado)    
+
+        layout_horizontal3.addWidget(btn_otro)
+        # Agregar espaciador entre boton5 y boton6
+        espaciador = QSpacerItem(100, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        layout_horizontal3.addItem(espaciador)
+        
+        layout_horizontal3.addWidget(btn_balance)
+        layout_horizontal3.setAlignment(Qt.AlignCenter)  # Centrar los botones
+        
+        layout_principal.addLayout(layout_horizontal3)
+        layout_principal.addSpacing(-10)
         
 
     def Retirar10kSeleccionado(self):
@@ -114,5 +128,10 @@ class Inicio(QWidget):
     def Retirar100kSeleccionado(self):
         self.hide()
         self.Trae_retirar = Pantalla100k(self)
+        self.Trae_retirar.show()
+    
+    def retirarOtroValor(self):
+        self.hide()
+        self.Trae_retirar = pantalla_otro(self)
         self.Trae_retirar.show()
 

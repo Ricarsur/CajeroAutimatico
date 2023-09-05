@@ -2,14 +2,14 @@ from PyQt5.QtWidgets import QWidget,QFileDialog, QLabel, QPushButton, QFrame, QV
 from PyQt5.QtGui import QPalette, QColor, QFont, QIcon, QDoubleValidator, QIntValidator
 from PyQt5.QtCore import Qt
 
-class retiro_ui(QWidget):
+class pantalla_otro(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        self.retiro_gui()
+        self.otro_retiro_gui()
         self.setFixedSize(400, 300)
     
-    def retiro_gui(self):
+    def otro_retiro_gui(self):
         self.setStyleSheet("background-color: #202C33;")
         self.setWindowTitle("Retiros")
 
