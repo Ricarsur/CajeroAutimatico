@@ -55,7 +55,7 @@ class OtroVlr_code:
             resultado = f"10k: {billete10}\n20k: {billete20}\n50k: {billete50}\n100k: {billete100}"
             alerta = QMessageBox()
             alerta.setWindowTitle("Transaccion aceptada")
-            alerta.setText("Dinero entregado: 1 billete de "+ str(resultado))
+            alerta.setText("Dinero entregado: "+ str(resultado))
             alerta.setIcon(QMessageBox.Information)
             alerta.exec_()
             print(resultado)

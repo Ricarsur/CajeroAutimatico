@@ -1,11 +1,14 @@
-from PyQt5.QtWidgets import QApplication, QSpacerItem, QWidget, QLabel, QSizePolicy, QPushButton, QVBoxLayout, QHBoxLayout
-from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont, QPixmap
+from PyQt5.QtWidgets import (QApplication, QHBoxLayout, QLabel, QPushButton,
+                             QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+
+from otroValor import pantalla_otro
 from retirar10k import Pantalla10k
 from retirar20k import Pantalla20k
 from retirar50k import Pantalla50k
 from retirar100k import Pantalla100k
-from otroValor import pantalla_otro
+
 
 class Inicio(QWidget):
     def __init__(self):
@@ -93,17 +96,14 @@ class Inicio(QWidget):
         btn_otro.setFixedSize(100, 34)
         btn_otro.clicked.connect(self.retirarOtroValor)    
 
-        btn_balance =QPushButton('Balance --->')
-        btn_balance.setStyleSheet("color: #FFFFFF; background-color: #00093F")
-        btn_balance.setFixedSize(100, 34)
-        btn_balance.clicked.connect(self.Retirar100kSeleccionado)    
+         
 
         layout_horizontal3.addWidget(btn_otro)
-        # Agregar espaciador entre boton5 y boton6
+        
         espaciador = QSpacerItem(100, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         layout_horizontal3.addItem(espaciador)
         
-        layout_horizontal3.addWidget(btn_balance)
+        
         layout_horizontal3.setAlignment(Qt.AlignCenter)  # Centrar los botones
         
         layout_principal.addLayout(layout_horizontal3)
