@@ -1,6 +1,11 @@
-from PyQt5.QtWidgets import QWidget, QMessageBox,QFileDialog, QLabel, QPushButton, QFrame, QVBoxLayout, QTableWidget, QTableWidgetItem, QGridLayout,QLineEdit, QComboBox
-from PyQt5.QtGui import QPalette, QPixmap, QColor, QFont, QIcon, QDoubleValidator, QIntValidator
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import (QColor, QDoubleValidator, QFont, QIcon, QIntValidator,
+                         QPalette, QPixmap)
+from PyQt5.QtWidgets import (QComboBox, QFileDialog, QFrame, QGridLayout,
+                             QLabel, QLineEdit, QMessageBox, QPushButton,
+                             QTableWidget, QTableWidgetItem, QVBoxLayout,
+                             QWidget)
+
 
 class Pantalla10k (QWidget):
     def __init__(self, parent):
@@ -13,7 +18,7 @@ class Pantalla10k (QWidget):
         self.setStyleSheet("background-color: #202C33;")
         self.setWindowTitle("Retiros")
 
-        retiro = 10000
+        
 
         pixmap = QPixmap("image\logo falabella.png") 
         pixmap = pixmap.scaled(100, 110, Qt.KeepAspectRatio, Qt.FastTransformation)
@@ -70,10 +75,15 @@ class Pantalla10k (QWidget):
         btn_no.clicked.connect(self.volver)
     def volver(self):
         self.parent.show()
-        self.hide()
+        self.hide()    
+    
+
     def aceptar_retiro(self):
+        retiro10= 10000
         alerta = QMessageBox()
         alerta.setWindowTitle("Transaccion aceptada")
-        alerta.setText("¡Su transaccion fue aceptada, retire el dinero!")
+        alerta.setText("Dinero entregado: 1 billete de "+ str(retiro10))
         alerta.setIcon(QMessageBox.Information)
         alerta.exec_()
+        self.parent.show()
+        self.close()

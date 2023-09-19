@@ -1,6 +1,13 @@
-from PyQt5.QtWidgets import QWidget,QFileDialog, QLabel, QPushButton, QFrame, QVBoxLayout, QTableWidget, QTableWidgetItem, QGridLayout,QLineEdit, QComboBox
-from PyQt5.QtGui import QPalette, QColor, QFont, QIcon, QDoubleValidator, QIntValidator
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import (QColor, QDoubleValidator, QFont, QIcon, QIntValidator,
+                         QPalette)
+from PyQt5.QtWidgets import (QComboBox, QFileDialog, QFrame, QGridLayout,
+                             QLabel, QLineEdit, QMessageBox, QPushButton,
+                             QTableWidget, QTableWidgetItem, QVBoxLayout,
+                             QWidget)
+
+from cajero_automatico import OtroVlr_code
+
 
 class pantalla_otro(QWidget):
     def __init__(self, parent):
@@ -54,7 +61,23 @@ class pantalla_otro(QWidget):
         self.enviar.setStyleSheet("background-color: #00093F;color: white;")
         paleta = self.enviar.palette()
         paleta.setColor(QPalette.ButtonText, QColor(255, 255, 255))
+        self.enviar.clicked.connect(self.entregar)
 
     def volver_principal(self):
         self.parent.show()
         self.hide()
+    def entregar(self):
+        try:
+            cantidad = int(self.valor_sacar.text())
+            if cantidad < 1000000:
+                OtroVlr_code.ejecutar_codigo(cantidad)
+            else:
+                alerta = QMessageBox()
+                alerta.setWindowTitle("Transaccion errada")
+                alerta.setText("La cantidad que ingreso es invalida!")
+                alerta.setIcon(QMessageBox.Information)
+                alerta.exec_()
+                self.parent.show()
+                self.close()
+        except Exception as e:
+            print("error", str(e))

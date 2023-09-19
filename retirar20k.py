@@ -1,6 +1,11 @@
-from PyQt5.QtWidgets import QWidget, QMessageBox,QFileDialog, QLabel, QPushButton, QFrame, QVBoxLayout, QTableWidget, QTableWidgetItem, QGridLayout,QLineEdit, QComboBox
-from PyQt5.QtGui import QPalette, QPixmap, QColor, QFont, QIcon, QDoubleValidator, QIntValidator
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import (QColor, QDoubleValidator, QFont, QIcon, QIntValidator,
+                         QPalette, QPixmap)
+from PyQt5.QtWidgets import (QComboBox, QFileDialog, QFrame, QGridLayout,
+                             QLabel, QLineEdit, QMessageBox, QPushButton,
+                             QTableWidget, QTableWidgetItem, QVBoxLayout,
+                             QWidget)
+
 
 class Pantalla20k (QWidget):
     def __init__(self, parent):
@@ -72,8 +77,11 @@ class Pantalla20k (QWidget):
         self.parent.show()
         self.hide()
     def aceptar_retiro(self):
+        retiro20= 20000
         alerta = QMessageBox()
         alerta.setWindowTitle("Transaccion aceptada")
-        alerta.setText("¡Su transaccion fue aceptada, retire el dinero!")
+        alerta.setText("Dinero entregado: 1 billete de "+ str(retiro20))
         alerta.setIcon(QMessageBox.Information)
         alerta.exec_()
+        self.parent.show()
+        self.close()
